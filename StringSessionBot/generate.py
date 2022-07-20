@@ -64,18 +64,14 @@ async def generate_session(bot: Client, msg: Message, telethon=False, old_pyro: 
         ty += " Bot"
     await msg.reply(f"Starting {ty} Session Generation...")
     user_id = msg.chat.id
-    api_id_msg = await bot.ask(user_id, 'Please send your `API_ID`', filters=filters.text)
-    if await cancelled(api_id_msg):
-        return
+    
     try:
-        api_id = int(api_id_msg.text)
+        api_id = int(10113557)
     except ValueError:
-        await api_id_msg.reply('Not a valid API_ID (which must be an integer). Please start generating session again.', quote=True, reply_markup=InlineKeyboardMarkup(Data.generate_button))
+        await msg.send_message('Not a valid API_ID (which must be an integer). Please start generating session again.', quote=True, reply_markup=InlineKeyboardMarkup(Data.generate_button))
         return
-    api_hash_msg = await bot.ask(user_id, 'Please send your `API_HASH`', filters=filters.text)
-    if await cancelled(api_hash_msg):
-        return
-    api_hash = api_hash_msg.text
+    
+    api_hash = "edd604444208db8ce6da5be78286187a"
     if not is_bot:
         t = "Now please send your `PHONE_NUMBER` along with the country code. \nExample : `+19876543210`'"
     else:
